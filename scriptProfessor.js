@@ -1,28 +1,12 @@
 class cadastroProfessor{
-    constructor(nome, cpf, datanascimento, turma, telefone, email, senha){
+    constructor(nome, email, senha){
         this.nome=nome;
-        this.cpf=cpf;
-        this.datanascimento=datanascimento;
-        this.turma=turma;
-        this.telefone=telefone;
         this.senha=senha;
         this.email=email;
     }
     //get
     getNome(){
         return this.nome;
-    }
-    getCpf(){
-        return this.cpf;
-    }
-    getdataNascimento(){
-        return this.datanascimento;
-    }
-    getTurma(){
-        return this.turma;
-    }
-    getTelefone(){
-        return this.telefone;
     }
     getSenha(){
         return this.senha;
@@ -33,18 +17,6 @@ class cadastroProfessor{
     //set
     setNome(){
         this.nome=novoNome;
-    }
-    setCPF(){
-        this.cpf=novoCpf;
-    }
-    setdataNascimento(){
-        this.datanascimento=novadataNascimento;
-    }
-    setTurma(){
-        this.turma=novaTurma;
-    }
-    setTelefone(){
-        this.telefone=novoTelefone;
     }
     setSenha(){
         this.senha=novaSenha;
@@ -63,20 +35,12 @@ class cadastroProfessor{
 
 const formulario= document.getElementById('form-control')
 const nome = document.getElementById('username');
-const cpf = document.getElementById('cpf');
-const datanascimento = document.getElementById('datanascimento');
-const turma = document.getElementById('turma');
-const telefone = document.getElementById('telefone');
 const email = document.getElementById('email');
 const senha = document.getElementById('password');
 
 
 function checkInputs() {
 const nomeValue = username.value;
-const cpfValue = cpf.value;
-const datanascimentoValue = datanascimento.value;
-const turmaValue = turma.value;
-const telefoneValue = telefone.value;
 const emailValue = email.value;
 const senhaValue = password.value;
 

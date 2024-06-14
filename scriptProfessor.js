@@ -1,12 +1,16 @@
 class cadastroProfessor{
-    constructor(nome, email, senha){
+    constructor(nome,identificador, email, senha){
         this.nome=nome;
+        this.identificador=identificador
         this.senha=senha;
         this.email=email;
     }
     //get
     getNome(){
         return this.nome;
+    }
+    getIdentificador(){
+        return this.identificador;
     }
     getSenha(){
         return this.senha;
@@ -17,6 +21,9 @@ class cadastroProfessor{
     //set
     setNome(){
         this.nome=novoNome;
+    }
+    setIdentificador(){
+        this.identificador=novoIdentificador;
     }
     setSenha(){
         this.senha=novaSenha;
@@ -29,22 +36,24 @@ class cadastroProfessor{
     }
     static fromJson(dadosJson){
         const dados=JSON.parse(dadosJson);
-        return new cadastroProfessor(dados.nome,dados.email,dados.senha);
+        return new cadastroProfessor(dados.nome,dados.identificador,dados.email,dados.senha);
     }
 }
 
-const formulario= document.getElementById('form')
+const formulario= document.getElementById('form');
 const nome = document.getElementById('username');
+const identificador= document.getElementById('identificador');
 const email = document.getElementById('email');
 const senha = document.getElementById('password');
 
 
 function checkInputs() {
 const nomeValue = username.value;
+const identificadorValue= identificador.value;
 const emailValue = email.value;
 const senhaValue = password.value;
 
-let professor = new cadastroProfessor(nomeValue, emailValue, senhaValue);
+let professor = new cadastroProfessor(nomeValue,identificadorValue, emailValue, senhaValue);
 const listaCadastroProfessor=JSON.parse(localStorage.getItem('listaCadastroProfessor')||'[]');
 let professorJSON=professor.toJson();
 let novoProfessor= cadastroProfessor.fromJson(professorJSON);

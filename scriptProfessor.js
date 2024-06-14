@@ -44,7 +44,7 @@ const nomeValue = username.value;
 const emailValue = email.value;
 const senhaValue = password.value;
 
-let professor = new cadastroProfessor(nomeValue, cpfValue, datanascimentoValue, turmaValue, telefoneValue, emailValue, senhaValue);
+let professor = new cadastroProfessor(nomeValue, emailValue, senhaValue);
 const listaCadastroProfessor=JSON.parse(localStorage.getItem('listaCadastroProfessor')||'[]');
 let professorJSON=professor.toJson();
 let novoProfessor= cadastroProfessor.fromJson(professorJSON);

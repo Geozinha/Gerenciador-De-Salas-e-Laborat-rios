@@ -33,7 +33,7 @@ class cadastroProfessor{
     }
 }
 
-const formulario= document.getElementById('form-control')
+const formulario= document.getElementById('form')
 const nome = document.getElementById('username');
 const email = document.getElementById('email');
 const senha = document.getElementById('password');

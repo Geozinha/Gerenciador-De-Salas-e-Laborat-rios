@@ -51,7 +51,7 @@ const emailValue = email.value;
 const senhaValue = password.value;
 
 
-let aluno = new cadastroAluno(nomeValue, cpfValue, datanascimentoValue, turmaValue, telefoneValue, emailValue, senhaValue);
+let aluno = new cadastroAluno(nomeValue, emailValue, senhaValue);
 const listaCadastroAluno= JSON.parse(localStorage.getItem('listaCadastroAluno')||'[]');
 let alunoJSON=aluno.toJson();
 let novoAluno= cadastroAluno.fromJson(alunoJSON);

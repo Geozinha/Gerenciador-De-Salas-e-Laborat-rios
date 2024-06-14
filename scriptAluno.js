@@ -29,7 +29,7 @@ class cadastroAluno {
     }
     static fromJson(dadosJson){
         const dados=JSON.parse(dadosJson);
-        return new cadastroAluno(dados.nome,dados.cpf,dados.datanascimento,dados.turma,dados.telefone,dados.email,dados.senha);
+        return new cadastroAluno(dados.nome,dados.email,dados.senha);
     }
 }
 

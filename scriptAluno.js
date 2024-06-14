@@ -1,28 +1,12 @@
 class cadastroAluno {
-    constructor(nome, cpf, datanascimento, turma, telefone, email, senha) {
+    constructor(nome, email, senha) {
         this.nome = nome;
-        this.cpf = cpf;
-        this.datanascimento = datanascimento;
-        this.turma = turma;
-        this.telefone = telefone;
         this.senha = senha;
         this.email = email;
     }
     //get
     getNome() {
         return this.nome;
-    }
-    getCpf() {
-        return this.cpf;
-    }
-    getdataNascimento() {
-        return this.datanascimento;
-    }
-    getTurma() {
-        return this.turma;
-    }
-    getTelefone() {
-        return this.telefone;
     }
     getSenha() {
         return this.senha;
@@ -33,18 +17,6 @@ class cadastroAluno {
     //set
     setNome(novoNome) {
         this.nome = novoNome;
-    }
-    setCPF(novoCpf) {
-        this.cpf = novoCpf;
-    }
-    setdataNascimento(NovaDataNascimento) {
-        this.datanascimento = NovaDataNascimento;
-    }
-    setTurma(novaTurma) {
-        this.turma=novaTurma;
-    }
-    setTelefone(novoTelefone) {
-        this.telefone=novoTelefone;
     }
     setSenha(novaSenha) {
         this.senha = novaSenha;
@@ -63,21 +35,18 @@ class cadastroAluno {
 
 const formulario= document.getElementById('form')
 const nome = document.getElementById('username');
-const cpf = document.getElementById('cpf');
-const datanascimento = document.getElementById('datanascimento');
-const turma = document.getElementById('turma');
-const telefone = document.getElementById('telefone');
 const email = document.getElementById('email');
 const senha = document.getElementById('password');
 
+formulario.addEventListener('submit', (e) =>{
+    e.preventDefault()
+    checkInputs();
+})
 
 function checkInputs() {
 
 const nomeValue = username.value;
 const cpfValue = cpf.value;
-const datanascimentoValue = datanascimento.value;
-const turmaValue = turma.value;
-const telefoneValue = telefone.value;
 const emailValue = email.value;
 const senhaValue = password.value;
 
@@ -110,7 +79,7 @@ localStorage.setItem('listaCadastroAluno', JSON.stringify(listaCadastroAluno));
     if (senhaValue === "") {
         setErrorFor(password, "A senha é obrigatória.");
       } else if (senhaValue.length < 6) {
-        setErrorFor(password, "A senha precisa ter no mínimo 7 caracteres.");
+        setErrorFor(password, "A senha precisa ter no mínimo 8 caracteres.");
       } else {
         setSucessoFor(password);
       }

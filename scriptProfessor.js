@@ -1,65 +1,57 @@
-class cadastroProfessor{
-    constructor(nome,identificador, email, senha){
-        this.nome=nome;
-        this.identificador=identificador
-        this.senha=senha;
-        this.email=email;
+class cadastroProfessor {
+    constructor(nome, identificador, email, senha) {
+        this.nome = nome;
+        this.identificador = identificador
+        this.senha = senha;
+        this.email = email;
     }
     //get
-    getNome(){
+    getNome() {
         return this.nome;
     }
-    getIdentificador(){
+    getIdentificador() {
         return this.identificador;
     }
-    getSenha(){
+    getSenha() {
         return this.senha;
     }
-    getEmail(){
+    getEmail() {
         return this.email;
     }
     //set
-    setNome(){
-        this.nome=novoNome;
+    setNome() {
+        this.nome = novoNome;
     }
-    setIdentificador(){
-        this.identificador=novoIdentificador;
+    setIdentificador() {
+        this.identificador = novoIdentificador;
     }
-    setSenha(){
-        this.senha=novaSenha;
+    setSenha() {
+        this.senha = novaSenha;
     }
-    setEmail(){
-        this.email=novoEmail;
+    setEmail() {
+        this.email = novoEmail;
     }
-    toJson(){
+    toJson() {
         return JSON.stringify(this);
     }
-    static fromJson(dadosJson){
-        const dados=JSON.parse(dadosJson);
-        return new cadastroProfessor(dados.nome,dados.identificador,dados.email,dados.senha);
+    static fromJson(dadosJson) {
+        const dados = JSON.parse(dadosJson);
+        return new cadastroProfessor(dados.nome, dados.identificador, dados.email, dados.senha);
     }
 }
 
-const formulario= document.getElementById('form');
+const formulario = document.getElementById('form');
 const nome = document.getElementById('username');
-const identificador= document.getElementById('identificador');
+const identificador = document.getElementById('identificador');
 const email = document.getElementById('email');
 const senha = document.getElementById('password');
 
 
 function checkInputs() {
-const nomeValue = username.value;
-const identificadorValue= identificador.value;
-const emailValue = email.value;
-const senhaValue = password.value;
-
-let professor = new cadastroProfessor(nomeValue,identificadorValue, emailValue, senhaValue);
-const listaCadastroProfessor=JSON.parse(localStorage.getItem('listaCadastroProfessor')||'[]');
-let professorJSON=professor.toJson();
-let novoProfessor= cadastroProfessor.fromJson(professorJSON);
-listaCadastroProfessor.push(novoProfessor);
-localStorage.setItem('listaCadastroProfessor', JSON.stringify(listaCadastroProfessor));
-
+    const nomeValue = username.value;
+    const identificadorValue = identificador.value;
+    const emailValue = email.value;
+    const senhaValue = password.value;
 
     if (nomeValue == '') {
         setErrorFor(nome, "O nome completo é obrigatório")
@@ -71,7 +63,7 @@ localStorage.setItem('listaCadastroProfessor', JSON.stringify(listaCadastroProfe
     if (emailValue == '') {
         setErrorFor(email, "O email completo é obrigatório")
     }
-    else if (!checkEmail(emailValue)){
+    else if (!checkEmail(emailValue)) {
         setErrorFor(email, "Por favor, insira um email válido.");
     }
     else {
@@ -80,39 +72,54 @@ localStorage.setItem('listaCadastroProfessor', JSON.stringify(listaCadastroProfe
     //senha
     if (passwordValue === "") {
         setErrorFor(password, "A senha é obrigatória.");
-      } else if (passwordValue.length < 6) {
+    } else if (passwordValue.length < 6) {
         setErrorFor(password, "A senha precisa ter no mínimo 7 caracteres.");
-      } else {
+    } else {
         setSucessoFor(password);
-      }
+    }
 
-      const formControle= formulario.querySelectorAll('.form-control');
+    const formControle = formulario.querySelectorAll('.form-control');
 
-      const formIsValid= [... formControle].every(formControle=>{
-        return (formControle.className==='campo sucess');
-      })
+    const formIsValid = [...formControle].every(formControle => {
+        return (formControle.className === 'campo sucess');
+    })
 
-      if (formIsValid){
+    if (formIsValid) {
+        let professor = new cadastroProfessor(nomeValue, identificadorValue, emailValue, senhaValue);
+        const listaCadastroProfessor = JSON.parse(localStorage.getItem('listaCadastroProfessor') || '[]');
+        let professorJSON = professor.toJson();
+        let novoProfessor = cadastroProfessor.fromJson(professorJSON);
+        listaCadastroProfessor.push(novoProfessor);
+        localStorage.setItem('listaCadastroProfessor', JSON.stringify(listaCadastroProfessor));
+
         console.log("O formulário está válido!");
-      }
+    }
 }
-function setErrorFor(input, mensagem){
-    const formcontrol=input.parentElement; //vai retorna a div que é pai do input // form-control é a class da div
-    const small= formcontrol.querySelector('small');
+function setErrorFor(input, mensagem) {
+    const formcontrol = input.parentElement; //vai retorna a div que é pai do input // form-control é a class da div
+    const small = formcontrol.querySelector('small');
 
-    small.innerText= mensagem;
+    small.innerText = mensagem;
 
-    formcontrol.className='form-control error';
+    formcontrol.className = 'form-control error';
 }
-function setSucessoFor(){
-    const formcontrol=input.parentElement; //vai retorna a div que é pai do input
+function setSucessoFor() {
+    const formcontrol = input.parentElement; //vai retorna a div que é pai do input
 
-    formcontrol.className='form-control sucess';
+    formcontrol.className = 'form-control sucess';
 }
 
 
 function checkEmail(email) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      email
+        email
     );
 }
+document.addEventListener('DOMContentLoaded', function () {
+    const loginBotaoProfessor = document.getElementById('loginBotaoProf');
+
+    loginBotaoProfessor.addEventListener('click', (e) => {
+        (e).preventDefault();
+        checkInputs();
+    })
+})
